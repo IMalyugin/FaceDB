@@ -1,0 +1,40 @@
+doctype html
+html(lang='en')
+  head
+    title Интернет-магазин «Билайн»
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    //script(src='/build/raven.js')
+    //script.
+    //  Raven.config('https://35d065154ef84084ba380f4596a0fa3a@raven.beeline.ru/18', {
+    //    environment: 'localhost'
+    //  }).install();
+    if isProduction
+      link(href='/build/bundle.css', rel='stylesheet')
+    else if html
+      link(href='/build/server.css', rel='stylesheet')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+    script.
+      var GTM = GTM || {};
+      (function(w, d, s, l, i) {w[l] = w[l] || []; w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+      var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src ='//www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);})(window, document, 'script', 'dataLayer', 'GTM-N7VS48');
+  body
+    #react-container!= html
+    script(src='/build/bundle.js')
+    if error
+      h2!= '<span>500</span> The following error occured during server rendering<br />\n'
+      pre!= error
+      style.
+        h2 span { font-size: 28px; }
+        body { color: red; padding: 10px 20px; }
+    else
+      noindex
+        script.
+          #{html ? 'ReactDOM.hydrate' : 'ReactDOM.render'}(
+            React.createElement(!{Component}, !{JSON.stringify(model).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')}),
+            document.getElementById('react-container')
+          )
+          #{html ? 'ReactDOM.hydrate' : 'ReactDOM.render'}(
+            React.createElement(!{Component}, !{JSON.stringify(model).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')}),
+            document.getElementById('react-container')
+          )

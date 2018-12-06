@@ -1,0 +1,21 @@
+{
+  "presets": [
+    "react",
+    ["env", {
+      "modules": false,
+      "loose": true,
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"]
+      }
+    }]
+  ],
+  "plugins": [
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ],
+  "env": {
+    "test": {
+      "presets": ["es2015", "react", "stage-0"]
+    }
+  }
+}

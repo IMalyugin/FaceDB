@@ -1,0 +1,8 @@
+/node_modules
+/build
+/coverage
+.eslintcache
+.stylelintcache
+.vscode
+.idea
+.DS_Store

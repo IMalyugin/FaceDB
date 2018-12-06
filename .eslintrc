@@ -1,0 +1,38 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "settings": {
+    "import/resolver": "webpack"
+  },
+  "rules": {
+    "global-require": 0,
+    "import/newline-after-import": 0,
+    "import/extensions": 0,
+    "import/prefer-default-export": 0,
+    "import/no-extraneous-dependencies": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/mouse-events-have-key-events": 0,
+    "jsx-a11y/label-has-for": [ 2, {"required": {"every": [ "id" ]}}],
+    "jsx-a11y/anchor-is-valid": 0,
+    "linebreak-style": 0,
+    "max-len": ["error", { "code": 120, "tabWidth": 2 }],
+    "no-console": 0,
+    "no-mixed-operators": 0,
+    "no-param-reassign": 0,
+    "no-underscore-dangle": 0,
+    "object-curly-newline": 0,
+    "react/forbid-prop-types": 0,
+    "react/jsx-max-props-per-line": 0,
+    "react/require-default-props": 0,
+    "react/sort-comp": [2, {
+      "order": ["state", "instance-properties", "properties", "static-methods", "lifecycle", "everything-else", "render"]
+    }],
+    "react/no-multi-comp": 0
+  }
+}
+
