@@ -1,0 +1,38 @@
+@import "styles/constants.pcss";
+
+.group {}
+
+.container {
+}
+
+.component {
+  display: flex;
+  padding: 4px 0;
+}
+
+.label {
+  flex: 1 1 65%;
+  color: var(--secondColor);
+  padding-right: 10px;
+}
+
+.collapsed {
+  flex: 0 1 110px;
+}
+
+.value {
+  flex: 1 1 35%;
+  color: var(--baseColor);
+}
+
+.link {
+  cursor: pointer;
+  border-bottom: 1px dashed var(--baseColor);
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transition: none;
+    color: var(--mainColor);
+    border-color: var(--mainColor);
+  }
+}

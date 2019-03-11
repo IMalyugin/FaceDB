@@ -1,0 +1,123 @@
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.container { position: relative; }
+
+.component {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.content {
+  position: absolute;
+  border: 5px solid green;
+  _border-radius: 50%;
+  opacity: 0.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+  font-size: 20px;
+
+  /* &::after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border: 2px solid transparent;
+    border-left-color: green;
+    border-bottom-color: green;
+    border-radius: 50%;
+    animation: rotate 1.2s infinite linear reverse;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    border: 2px solid transparent;
+    border-right-color: green;
+    border-bottom-color: green;
+    border-radius: 50%;
+    animation: rotate 2s infinite linear;
+    opacity: 0.5;
+  }*/
+}
+
+.detected { opacity: 0.8; }
+
+.data {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  translate: all 0.4s linear;
+  font-family: monospace;
+}
+
+.name {
+  font-size: 35px;
+  color: rgba(0, 255, 0, 1);
+  white-space: nowrap;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.devices {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+  transform: translateX(-175px) translateY(5px);
+  text-align: center;
+  font-size: 15px;
+  color: #fff;
+  padding: 10px;
+
+  &::after {
+    content: '';
+    background: #000;
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  img { height: 150px; }
+}
+
+.device {
+  flex: 0 0 160px;
+  &::before,
+  &::after {
+    font-size: 20px;
+    color: rgb(0, 255, 0);
+    margin-bottom: 10px;
+    display: block;
+  }
+}
+
+.currentDevice {
+  &::before { content: "Current"; }
+}
+
+.targetDevice {
+  &::before { content: "Target"; }
+}

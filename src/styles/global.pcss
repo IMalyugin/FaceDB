@@ -1,0 +1,83 @@
+@import "constants.pcss";
+
+html {
+  color: #282828;
+  font: var(--baseFont);
+  font-family: var(--baseFontFamily);
+
+  /* font aliasing for officina to look good */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* removes tap delay, but disables double tap zoom */
+  touch-action: manipulation;
+
+  /* hotfix for stupid header taking 105% width, part.1 */
+  overflow-y: scroll;
+}
+
+body {
+  margin: 0;
+
+  /* hotfix for stupid header taking 105% width, part.2 */
+  overflow-x: hidden;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+iframe {
+  max-width: 100%;
+  border: none;
+}
+
+p {
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:empty {
+    display: none;
+
+    &:first-child + p {
+      margin-top: 0;
+    }
+
+    &:last-child + p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+img {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+input::-ms-clear,
+& input::-ms-reveal {
+  display: none;
+}
+
+a {
+  color: var(--baseColor);
+  transition: color 0.2s ease-out;
+
+  &:hover {
+    transition: none;
+    color: var(--mainColor);
+  }
+}
