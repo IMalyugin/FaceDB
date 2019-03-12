@@ -36,19 +36,6 @@ const getProfileDataList = async () => {
 
 app.all('/', async (req, res) => {
   res.render('index', {
-    Component: 'components.App',
-    error: null,
-    model: {
-      userData: {
-        list: await getProfileIdList() || [],
-        ...await getProfileDataList() || [],
-      },
-    },
-  });
-});
-
-app.all('/webcam', async (req, res) => {
-  res.render('index', {
     Component: 'components.WebCam',
     error: null,
     model: {
@@ -59,7 +46,6 @@ app.all('/webcam', async (req, res) => {
     },
   });
 });
-
 
 const server = app.listen(app.get('port'), () => {
   console.log(`
