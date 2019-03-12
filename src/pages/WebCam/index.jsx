@@ -35,7 +35,7 @@ class WebCamPageLayout extends Component {
       width: 640,
       height: 480,
     };
-    this.options = new TinyFaceDetectorOptions({ inputSize: 512, scoreThreshold: 0.3 });
+    this.options = new TinyFaceDetectorOptions({ inputSize: 512, scoreThreshold: 0.4 });
     this.context = null;
   }
 
@@ -142,14 +142,14 @@ class WebCamPageLayout extends Component {
     clearTimeout(this.loopBackTimer);
 
     const faceDetectionTask = detectAllFaces(video, this.options);
-    faceDetectionTask.then((result) => {
-      if (result) {
-        // this.drawDetections(result);
-      }
-    }).finally(() => {
-      cancelAnimationFrame(this.loopBackTimer);
-      this.loopBackTimer = requestAnimationFrame(this.loopBack);
-    });
+    // faceDetectionTask.then((result) => {
+    //   if (result) {
+    //     // this.drawDetections(result);
+    //   }
+    // }).finally(() => {
+    //   cancelAnimationFrame(this.loopBackTimer);
+    //   this.loopBackTimer = requestAnimationFrame(this.loopBack);
+    // });
 
 
     const canvas = this.overlayCanvasRef.current;
@@ -171,8 +171,6 @@ class WebCamPageLayout extends Component {
 
     faceDetectionLandmarks.then((result) => {
       const context = canvas.getContext('2d');
-      document.title = Math.random();
-      context.clearRect(0, 0, canvas.width, canvas.height);
       if (result && result.length) {
         // const detections = result.map(item => item.detection);
         const landmarks = resizeResults(result, { width: this.state.width, height: this.state.height })
@@ -184,11 +182,13 @@ class WebCamPageLayout extends Component {
           const { probability, expression } = item.expressions
             .map(expr => (expr.expression === 'neutral' ? ({
               ...expr,
-              probability: expr.probability * 0.01,
+              probability: expr.probability * 0.1,
             }) : expr))
             .reduce((best, expr) => (expr.probability > best.probability ? expr : best));
           drawText(context, x + width, y, `${score} ${expression}`);
         });
+      } else {
+        console.log('noResult');
       }
     }).finally(() => {
       cancelAnimationFrame(this.loopBackTimer);
@@ -201,7 +201,6 @@ class WebCamPageLayout extends Component {
       width, height,
       overlayLeft, overlayTop,
     } = this.state;
-    console.log('render');
     return (
       <div className={cx('videoContainer')}>
         <video // eslint-disable-line jsx-a11y/media-has-caption
@@ -213,7 +212,6 @@ class WebCamPageLayout extends Component {
           width={width - overlayLeft * 2} height={height - overlayTop * 2}
         />
         {/* <FacesList className={cx('overlay')} /> */}
-        {/* <canvas className={cx('canvas')} ref={this.canvasRef} /> */}
         <canvas
           className={cx('overlay')}
           ref={this.overlayCanvasRef}
